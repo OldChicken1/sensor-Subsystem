@@ -21,7 +21,6 @@ ORDERED_OBJS += \
 "./pixy_main.obj" \
 "./pixy_queue.obj" \
 "./process_main.obj" \
-"./readFromQueueThread.obj" \
 "./sensors_queue.obj" \
 "./sensors_state.obj" \
 "./statisticsTask.obj" \
@@ -188,8 +187,8 @@ mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg.bin: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(GEN_MISC_FILES__QUOTED)$(BIN_OUTPUTS__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "client_cbs.obj" "syscfg\ti_drivers_net_wifi_config.obj" "syscfg\Board.obj" "debug.obj" "main_freertos.obj" "mqtt_client_app.obj" "mqtt_queue.obj" "network_if.obj" "pixy_main.obj" "pixy_queue.obj" "process_main.obj" "readFromQueueThread.obj" "sensors_queue.obj" "sensors_state.obj" "statisticsTask.obj" "timer_pixy.obj" "timer_pub.obj" "uart_term.obj" "ultraSonar_main.obj" 
-	-$(RM) "client_cbs.d" "syscfg\ti_drivers_net_wifi_config.d" "syscfg\Board.d" "debug.d" "main_freertos.d" "mqtt_client_app.d" "mqtt_queue.d" "network_if.d" "pixy_main.d" "pixy_queue.d" "process_main.d" "readFromQueueThread.d" "sensors_queue.d" "sensors_state.d" "statisticsTask.d" "timer_pixy.d" "timer_pub.d" "uart_term.d" "ultraSonar_main.d" 
+	-$(RM) "client_cbs.obj" "syscfg\ti_drivers_net_wifi_config.obj" "syscfg\Board.obj" "debug.obj" "main_freertos.obj" "mqtt_client_app.obj" "mqtt_queue.obj" "network_if.obj" "pixy_main.obj" "pixy_queue.obj" "process_main.obj" "sensors_queue.obj" "sensors_state.obj" "statisticsTask.obj" "timer_pixy.obj" "timer_pub.obj" "uart_term.obj" "ultraSonar_main.obj" 
+	-$(RM) "client_cbs.d" "syscfg\ti_drivers_net_wifi_config.d" "syscfg\Board.d" "debug.d" "main_freertos.d" "mqtt_client_app.d" "mqtt_queue.d" "network_if.d" "pixy_main.d" "pixy_queue.d" "process_main.d" "sensors_queue.d" "sensors_state.d" "statisticsTask.d" "timer_pixy.d" "timer_pub.d" "uart_term.d" "ultraSonar_main.d" 
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
 	-@echo 'Finished clean'
 	-@echo ' '

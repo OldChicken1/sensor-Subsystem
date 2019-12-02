@@ -23,7 +23,6 @@ C_SRCS += \
 ../pixy_main.c \
 ../pixy_queue.c \
 ../process_main.c \
-../readFromQueueThread.c \
 ../sensors_queue.c \
 ../sensors_state.c \
 ../statisticsTask.c \
@@ -51,7 +50,6 @@ C_DEPS += \
 ./pixy_main.d \
 ./pixy_queue.d \
 ./process_main.d \
-./readFromQueueThread.d \
 ./sensors_queue.d \
 ./sensors_state.d \
 ./statisticsTask.d \
@@ -72,7 +70,6 @@ OBJS += \
 ./pixy_main.obj \
 ./pixy_queue.obj \
 ./process_main.obj \
-./readFromQueueThread.obj \
 ./sensors_queue.obj \
 ./sensors_state.obj \
 ./statisticsTask.obj \
@@ -99,7 +96,6 @@ OBJS__QUOTED += \
 "pixy_main.obj" \
 "pixy_queue.obj" \
 "process_main.obj" \
-"readFromQueueThread.obj" \
 "sensors_queue.obj" \
 "sensors_state.obj" \
 "statisticsTask.obj" \
@@ -123,7 +119,6 @@ C_DEPS__QUOTED += \
 "pixy_main.d" \
 "pixy_queue.d" \
 "process_main.d" \
-"readFromQueueThread.d" \
 "sensors_queue.d" \
 "sensors_state.d" \
 "statisticsTask.d" \
@@ -148,7 +143,6 @@ C_SRCS__QUOTED += \
 "../pixy_main.c" \
 "../pixy_queue.c" \
 "../process_main.c" \
-"../readFromQueueThread.c" \
 "../sensors_queue.c" \
 "../sensors_state.c" \
 "../statisticsTask.c" \

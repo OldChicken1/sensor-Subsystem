@@ -117,10 +117,7 @@ void MqttClientCallback(int32_t event,
                         void *data,
                         uint32_t dataLen)
 {
-    bool test;
-    test = HwiP_inISR();
     TaskHandle_t testHandle = xTaskGetCurrentTaskHandle();
-    int32_t i = 0;
 //    dbgOutputLoc(MQTT_CALLBACK_PRE_LOC);
     switch((MQTTClient_EventCB)event)
     {
@@ -142,34 +139,6 @@ void MqttClientCallback(int32_t event,
             {
                 //APP_PRINT("Connection Error: %d\n\r", *ConnACK);
             }
-            break;
-        }
-
-        case MQTTCLIENT_OPERATION_EVT_PUBACK:
-        {
-            char *PubAck = (char *) data;
-//            APP_PRINT("PubAck:\n\r");
-//            APP_PRINT("%s\n\r", PubAck);
-            break;
-        }
-
-        case MQTTCLIENT_OPERATION_SUBACK:
-        {
-//            APP_PRINT("Sub Ack:\n\r");
-//            APP_PRINT("Granted QoS Levels are:\n\r");
-            for(i = 0; i < dataLen; i++)
-            {
-                //APP_PRINT("%s :QoS %d\n\r", topic[i],
-                   //       ((unsigned char*) data)[i]);
-            }
-            break;
-        }
-
-        case MQTTCLIENT_OPERATION_UNSUBACK:
-        {
-            char *UnSub = (char *) data;
-//            APP_PRINT("UnSub Ack \n\r");
-//            APP_PRINT("%s\n\r", UnSub);
             break;
         }
 
@@ -252,7 +221,8 @@ void MqttClientCallback(int32_t event,
             //APP_PRINT("Duplicate\n\r");
         }
         sendMsgToStatQueue(&queueElem);
-        if(strncmp(msg_board, "rocky", 5) == 0){
+        if(strncmp(msg_board, "rocky", 5) == 0)
+        {
             msgQueue_sensor armToSensors;
             armToSensors.dataType = ARM_MSG_TYPE;
             sendMsgToSensorQ(&armToSensors);
@@ -264,12 +234,8 @@ void MqttClientCallback(int32_t event,
 //        dbgOutputLoc(MQTT_CALLBACK_RECV_POST_LOC);
         break;
     }
-    case MQTTClient_DISCONNECT_CB_EVENT:
-    {
-        //gResetApplication = true;
-        //APP_PRINT("BRIDGE DISCONNECTION\n\r");
-        break;
-    }
+//    default:
+//        break;
     }
 //    dbgOutputLoc(MQTT_CALLBACK_POST_LOC);
 }

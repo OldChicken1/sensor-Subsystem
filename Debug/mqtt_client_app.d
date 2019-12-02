@@ -40,6 +40,7 @@ mqtt_client_app.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/incl
 mqtt_client_app.obj: C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/GPIO.h
 mqtt_client_app.obj: C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/SPI.h
 mqtt_client_app.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdbool.h
+mqtt_client_app.obj: C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/Timer.h
 mqtt_client_app.obj: C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/net/wifi/simplelink.h
 mqtt_client_app.obj: C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/net/wifi/porting/user.h
 mqtt_client_app.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/string.h
@@ -89,7 +90,6 @@ mqtt_client_app.obj: ../mqtt_queue.h
 mqtt_client_app.obj: C:/FreeRTOS/FreeRTOSv10.2.1/FreeRTOS/Source/include/queue.h
 mqtt_client_app.obj: ../pixy_queue.h
 mqtt_client_app.obj: ../mqtt_queue.h
-mqtt_client_app.obj: ../readFromQueueThread.h
 mqtt_client_app.obj: ../statisticsTask.h
 mqtt_client_app.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdlib.h
 
@@ -133,6 +133,7 @@ C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/machine/_inttypes
 C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/GPIO.h: 
 C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/SPI.h: 
 C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdbool.h: 
+C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/Timer.h: 
 C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/net/wifi/simplelink.h: 
 C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/net/wifi/porting/user.h: 
 C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/string.h: 
@@ -182,6 +183,5 @@ C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/UART.h:
 C:/FreeRTOS/FreeRTOSv10.2.1/FreeRTOS/Source/include/queue.h: 
 ../pixy_queue.h: 
 ../mqtt_queue.h: 
-../readFromQueueThread.h: 
 ../statisticsTask.h: 
 C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdlib.h: 

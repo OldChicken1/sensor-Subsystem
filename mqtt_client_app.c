@@ -62,7 +62,7 @@
 /* TI-Driver includes                                                        */
 #include <ti/drivers/GPIO.h>
 #include <ti/drivers/SPI.h>
-
+#include <ti/drivers/Timer.h>
 /* Simplelink includes                                                       */
 #include <ti/drivers/net/wifi/simplelink.h>
 
@@ -81,7 +81,6 @@
 #include "debug.h"
 #include "timer_pub.h"
 #include "mqtt_queue.h"
-#include "readFromQueueThread.h"
 #include "statisticsTask.h"
 //*****************************************************************************
 //                          LOCAL DEFINES
@@ -520,6 +519,7 @@ void * MqttClientThread(void * pvParameters)
 //
 //    return (NULL);
     vTaskSuspend(NULL);
+    return (NULL);
 }
 
 //*****************************************************************************
@@ -543,7 +543,6 @@ void * MqttClient(void *pvParameters)
     TaskHandle_t testHandle = xTaskGetCurrentTaskHandle();
 //    dbgOutputLoc(MQTT_CLIENT_PRE_LOC);
     msgQueue_t2 queueElemRecv;
-    msgQueue_t queueElemSend;
     long lRetVal = -1;
     int msg_send_num = 0;
     int pub_count = 0;
@@ -646,62 +645,6 @@ void * MqttClient(void *pvParameters)
             }
 
             break;
-//        case TARGETCHANGE_MSG:
-//            char statePixy = (queueElemRecv.data >> 24) + '0';
-//            char isInsight = (queueElemRecv.data >> 16) + '0';
-//            char color = (queueElemRecv.data >> 8) + '0';
-//            char direction = queueElemRecv.data + '0';
-//            snprintf(
-//                    txBuff,
-//                    TXBUFFSIZE,
-//                    "{\"PUB_Board_ID\": \"%s\", \"Message_ID\""
-//                    ": \"%"PRIu32"\", \"Message_Content\": \"%c%c%c%c\", \"Target\": \"Changed\",  \"Angle\": \"%d\"}",
-//                    BOARD_ID, pub_count, statePixy, isInsight, color, direction,
-//                    queueElemRecv.angle);
-//            //                dbgOutputLoc(PUBLISH_STATS_LOC);
-//            lRetVal = MQTTClient_publish(
-//                    gMqttClient, (char*) publish_topic0,
-//                    strlen((char*) publish_topic0), txBuff,
-//                    strlen((char*) txBuff),
-//                    MQTT_QOS_0 | ((RETAIN_ENABLE) ? MQTT_PUBLISH_RETAIN : 0));
-//            pub_count++;
-//            //                dbgOutputLoc(MAIN_MSG_EVENT_OUT_LOC);
-//            msg_send_num++;
-//            break;
-//        case LOST_OBJECT_MSG:
-//            snprintf(
-//                    txBuff,
-//                    TXBUFFSIZE,
-//                    "{\"PUB_Board_ID\": \"%s\", \"Message_ID\""
-//                    ": \"%"PRIu32"\", \"Message_Content\": \"Lost sight of the tracked object. Relocating.\", \"color\": \"%d\"}",
-//                    BOARD_ID, pub_count, queueElemRecv.color);
-//            //                dbgOutputLoc(PUBLISH_STATS_LOC);
-//            lRetVal = MQTTClient_publish(
-//                    gMqttClient, (char*) publish_topic0,
-//                    strlen((char*) publish_topic0), txBuff,
-//                    strlen((char*) txBuff),
-//                    MQTT_QOS_0 | ((RETAIN_ENABLE) ? MQTT_PUBLISH_RETAIN : 0));
-//            pub_count++;
-//            //                dbgOutputLoc(MAIN_MSG_EVENT_OUT_LOC);
-//            msg_send_num++;
-//            break;
-//        case REFIND_OBJECT_MSG:
-//            snprintf(
-//                    txBuff,
-//                    TXBUFFSIZE,
-//                    "{\"PUB_Board_ID\": \"%s\", \"Message_ID\""
-//                    ": \"%"PRIu32"\", \"Message_Content\": \"Can't relocating. Try to find a new object.\", \"color\": \"%d\"}",
-//                    BOARD_ID, pub_count, queueElemRecv.color);
-//            //                dbgOutputLoc(PUBLISH_STATS_LOC);
-//            lRetVal = MQTTClient_publish(
-//                    gMqttClient, (char*) publish_topic0,
-//                    strlen((char*) publish_topic0), txBuff,
-//                    strlen((char*) txBuff),
-//                    MQTT_QOS_0 | ((RETAIN_ENABLE) ? MQTT_PUBLISH_RETAIN : 0));
-//            pub_count++;
-//            //                dbgOutputLoc(MAIN_MSG_EVENT_OUT_LOC);
-//            msg_send_num++;
-//            break;
         case DISTANCE_MSG:{
             uint8_t handred = (queueElemRecv.distance >> 16);
             uint8_t decade = (queueElemRecv.distance >> 8);
@@ -719,26 +662,6 @@ void * MqttClient(void *pvParameters)
             break;
         }
 
-//        case DISTANCE_WARNING_MSG:
-//            handred = (queueElemRecv.distance >> 16);
-//            decade = (queueElemRecv.distance >> 8);
-//            digit = queueElemRecv.distance;
-//            snprintf(
-//                    txBuff,
-//                    TXBUFFSIZE,
-//                    "{\"PUB_Board_ID\": \"%s\", \"Message_ID\""
-//                    ": \"%"PRIu32"\", \"Message_Content\": \"Distance closer than 8 inch.\", \"distance\": \"%c%c%c\"}",
-//                    BOARD_ID, pub_count, handred, decade, digit);
-//            //                dbgOutputLoc(PUBLISH_STATS_LOC);
-//            lRetVal = MQTTClient_publish(
-//                    gMqttClient, (char*) publish_topic0,
-//                    strlen((char*) publish_topic0), txBuff,
-//                    strlen((char*) txBuff),
-//                    MQTT_QOS_0 | ((RETAIN_ENABLE) ? MQTT_PUBLISH_RETAIN : 0));
-//            pub_count++;
-//            //                dbgOutputLoc(MAIN_MSG_EVENT_OUT_LOC);
-//            msg_send_num++;
-//            break;
         case STATS_MSG:
             snprintf(
                     txBuff,
@@ -952,7 +875,6 @@ int32_t MqttClient_start()
 //    dbgOutputLoc(MQTT_CLIENT_START_PRE_LOC);
     TaskHandle_t testHandle = xTaskGetCurrentTaskHandle();
     int32_t lRetVal = -1;
-    int32_t iCount = 0;
     pthread_t g_rx_task_hndl = (pthread_t) NULL;
     int32_t threadArg = 100;
     pthread_attr_t pAttrs;
@@ -1057,13 +979,6 @@ int32_t MqttClient_start()
             MQTTClient_disconnect(gMqttClient);
             gUiConnFlag = 0;
         }
-//            else
-//            {
-//                for (iCount = 0; iCount < SUBSCRIPTION_TOPIC_COUNT; iCount++)
-//                {
-//                    // UART_PRINT("Client subscribed on %s\n\r,", topic[iCount]);
-//                }
-//            }
     }
     //   }
 
@@ -1215,13 +1130,6 @@ void mainThread(void * args)
     SPI_init();
 
     /*remove uart receive from LPDS dependency                               */
-    //   UART_control(tUartHndl, UART_CMD_RXDISABLE, NULL);
-//    GPIO_write(Board_dbgLOC_0, 0);
-//    GPIO_write(Board_dbgLOC_1, 0);
-//    GPIO_write(Board_dbgLOC_2, 0);
-//    GPIO_write(Board_dbgLOC_3, 0);
-//    GPIO_write(Board_dbgLOC_4, 0);
-//    dbgOutputLoc(MAIN_TASK_ENTER_LOC);
     /*Create the sl_Task                                                     */
     pthread_attr_init(&pAttrs_spawn);
     priParam.sched_priority = SPAWN_TASK_PRIORITY;

@@ -22,6 +22,8 @@
 #define SONIC_DATA_LENGTH 5
 #define DISTANCE_LENGTH 3
 #define SEND_SPEED      10
+void insertionSort(uint32_t arr[], int n);
+
 #endif /* ULTRASONAR_MAIN_H_ */
 
-void insertionSort(uint32_t arr[], int n);
+
