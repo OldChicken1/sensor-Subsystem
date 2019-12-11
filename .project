@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg</name>
+	<name>sensor_subsystem</name>
 	<comment></comment>
 	<projects>
 		<project>freertos_builds_CC3220SF_LAUNCHXL_release_ccs</project>

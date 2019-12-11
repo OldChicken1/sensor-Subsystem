@@ -158,7 +158,7 @@ int sensor_fsm(sensor_state_fsm* aFsm, msgQueue_sensor* dataRecv)
                         color[j] = GREEN_PURPLE;
                     }
                     else if (sensorData[PIXY_SIG_LOC + block_target[j] * 14]
-                            == 11)
+                            == 12)
                     {
                         color[j] = YELLOW_PURPLE;
                     }
@@ -239,101 +239,174 @@ int sensor_fsm(sensor_state_fsm* aFsm, msgQueue_sensor* dataRecv)
                 {
                     isDetected[0] = 1;
                     block_target[0] = 0;
+                    block_target[1] = 0;
+                    block_target[2] = 0;
+                    isDetected[1] = 0;
+                    isDetected[2] = 0;
                     targetCount++;
                 }
-                else if (isDetected[1] == 0)
-                {
-                    isDetected[1] = 1;
-                    block_target[1] = 1;
-                    targetCount++;
-                }
-                else if (isDetected[2] == 0)
-                {
-                    isDetected[2] = 1;
-                    block_target[2] = 2;
-                    targetCount++;
-                }
+//                else if (isDetected[1] == 0)
+//                {
+//                    isDetected[1] = 1;
+//                    block_target[1] = 1;
+//                    targetCount++;
+//                }
+//                else if (isDetected[2] == 0)
+//                {
+//                    isDetected[2] = 1;
+//                    block_target[2] = 2;
+//                    targetCount++;
+//                }
 
             }
-            int j;
-            for (j = 0; j < 3; j++)
+            int j = 0;
+            double angle = 0;
+            if (isDetected[j])
             {
-                double angle = 0;
-                if (isDetected[j])
+                blockSize[j] = sensorData[PIXY_WIDTH_LOC + j * 14]
+                        * sensorData[PIXY_HEIGHT_LOC + j * 14];
+                trackingIndex[j] = sensorData[PIXY_TRACK_LOC
+                        + block_target[j] * 14];
+                uint16_t object_x = sensorData[PIXY_XCOR_LOC
+                        + block_target[j] * 14];
+                uint8_t object_x2 = sensorData[PIXY_XCOR_LOC + 1
+                        + block_target[j] * 14];
+                if (object_x2 != 0)
                 {
-                    blockSize[j] = sensorData[PIXY_WIDTH_LOC + j * 14]
-                            * sensorData[PIXY_HEIGHT_LOC + j * 14];
-                    trackingIndex[j] = sensorData[PIXY_TRACK_LOC
-                            + block_target[j] * 14];
-                    uint16_t object_x = sensorData[PIXY_XCOR_LOC
-                            + block_target[j] * 14];
-                    uint8_t object_x2 = sensorData[PIXY_XCOR_LOC + 1
-                            + block_target[j] * 14];
-                    if (object_x2 != 0)
+                    object_x = object_x2 << 8 | object_x;
+                }
+                int32_t x_err = X_CENTER - object_x; //about 30cm away from the object
+                angle = ANGLE_MULTIPLE * x_err;
+                angle = angle + ANGLE_CONSTANT;
+                blockAngle[j] = (int) (angle + 0.5);
+                if (dataToSend.angle[j] < -2)
+                {
+                    direction[j] = ROTATE_LEFT;
+                }
+                else if (dataToSend.angle[j] > 2)
+                {
+                    direction[j] = ROTATE_RIGHT;
+                }
+                else
+                {
+                    direction[j] = LINE_UP;
+                    aFsm->reportUltra = true;
+                    uint16_t adcValue0;
+                    uint16_t res = ADC_convert(aFsm->adc, &adcValue0);
+                    uint32_t adcValue0MicroVolt =
+                    ADC_convertRawToMicroVolts(aFsm->adc, adcValue0);
+                    int index;
+                    for (index = 0;
+                            index < sizeof(lookup) / sizeof(lookup[0]) - 1;
+                            index++)
                     {
-                        object_x = object_x2 << 8 | object_x;
-                    }
-                    int32_t x_err = X_CENTER - object_x; //about 30cm away from the object
-                    angle = ANGLE_MULTIPLE * x_err;
-                    angle = angle + ANGLE_CONSTANT;
-                    blockAngle[j] = (int) (angle + 0.5);
-                    if (dataToSend.angle[j] < -2)
-                    {
-                        direction[j] = ROTATE_LEFT;
-                    }
-                    else if (dataToSend.angle[j] > 2)
-                    {
-                        direction[j] = ROTATE_RIGHT;
-                    }
-                    else
-                    {
-                        direction[j] = LINE_UP;
-                        aFsm->reportUltra = true;
-                        uint16_t adcValue0;
-                        uint16_t res = ADC_convert(aFsm->adc, &adcValue0);
-                        uint32_t adcValue0MicroVolt =
-                        ADC_convertRawToMicroVolts(aFsm->adc, adcValue0);
-                        int index;
-                        for (index = 0;
-                                index < sizeof(lookup) / sizeof(lookup[0]) - 1;
-                                index++)
+                        if (index == 0 && lookup[index] < adcValue0MicroVolt)
                         {
-                            if (index == 0
-                                    && lookup[index] < adcValue0MicroVolt)
-                            {
-                                distance = 10;
-                                break;
-                            }
-                            if (index == sizeof(lookup) / sizeof(lookup[0]) - 2
-                                    && lookup[index] > adcValue0MicroVolt)
-                            {
-                                distance = 32;
-                                break;
-                            }
-                            if (lookup[index] >= adcValue0MicroVolt
-                                    && lookup[index + 1] <= adcValue0MicroVolt)
-                            {
-                                uint32_t total = lookup[index + 1]
-                                        - lookup[index];
-                                uint32_t diff = adcValue0MicroVolt
-                                        - lookup[index];
-                                double portion = diff / total;
-                                distance =
-                                        (int) (portion * correspond[index]
-                                                + (1 - portion)
-                                                        * correspond[index + 1]);
-                                break;
-                            }
+                            distance = 10;
+                            break;
+                        }
+                        if (index == sizeof(lookup) / sizeof(lookup[0]) - 2
+                                && lookup[index] > adcValue0MicroVolt)
+                        {
+                            distance = 32;
+                            break;
+                        }
+                        if (lookup[index] >= adcValue0MicroVolt
+                                && lookup[index + 1] <= adcValue0MicroVolt)
+                        {
+                            uint32_t total = lookup[index + 1] - lookup[index];
+                            uint32_t diff = adcValue0MicroVolt - lookup[index];
+                            double portion = diff / total;
+                            distance = (int) (portion * correspond[index]
+                                    + (1 - portion) * correspond[index + 1]);
+                            break;
                         }
                     }
-                    if (sensorData[PIXY_SIG_LOC + block_target[j] * 14] == 19)
-                    {
-                        color[j] = GREEN_RED;
-                    }
-                    //                    final_msg = OBJECT_FINDING_SIG << 24 | isDetected << 16
-                    //                            | color << 8 | direction;
+                }
+                if (sensorData[PIXY_SIG_LOC + block_target[j] * 14] == 19)
+                {
+                    color[j] = GREEN_RED;
                 }
             }
+//            int j;
+//            for (j = 0; j < 3; j++)
+//            {
+//                double angle = 0;
+//                if (isDetected[j])
+//                {
+//                    blockSize[j] = sensorData[PIXY_WIDTH_LOC + j * 14]
+//                            * sensorData[PIXY_HEIGHT_LOC + j * 14];
+//                    trackingIndex[j] = sensorData[PIXY_TRACK_LOC
+//                            + block_target[j] * 14];
+//                    uint16_t object_x = sensorData[PIXY_XCOR_LOC
+//                            + block_target[j] * 14];
+//                    uint8_t object_x2 = sensorData[PIXY_XCOR_LOC + 1
+//                            + block_target[j] * 14];
+//                    if (object_x2 != 0)
+//                    {
+//                        object_x = object_x2 << 8 | object_x;
+//                    }
+//                    int32_t x_err = X_CENTER - object_x; //about 30cm away from the object
+//                    angle = ANGLE_MULTIPLE * x_err;
+//                    angle = angle + ANGLE_CONSTANT;
+//                    blockAngle[j] = (int) (angle + 0.5);
+//                    if (dataToSend.angle[j] < -2)
+//                    {
+//                        direction[j] = ROTATE_LEFT;
+//                    }
+//                    else if (dataToSend.angle[j] > 2)
+//                    {
+//                        direction[j] = ROTATE_RIGHT;
+//                    }
+//                    else
+//                    {
+//                        direction[j] = LINE_UP;
+//                        aFsm->reportUltra = true;
+//                        uint16_t adcValue0;
+//                        uint16_t res = ADC_convert(aFsm->adc, &adcValue0);
+//                        uint32_t adcValue0MicroVolt =
+//                        ADC_convertRawToMicroVolts(aFsm->adc, adcValue0);
+//                        int index;
+//                        for (index = 0;
+//                                index < sizeof(lookup) / sizeof(lookup[0]) - 1;
+//                                index++)
+//                        {
+//                            if (index == 0
+//                                    && lookup[index] < adcValue0MicroVolt)
+//                            {
+//                                distance = 10;
+//                                break;
+//                            }
+//                            if (index == sizeof(lookup) / sizeof(lookup[0]) - 2
+//                                    && lookup[index] > adcValue0MicroVolt)
+//                            {
+//                                distance = 32;
+//                                break;
+//                            }
+//                            if (lookup[index] >= adcValue0MicroVolt
+//                                    && lookup[index + 1] <= adcValue0MicroVolt)
+//                            {
+//                                uint32_t total = lookup[index + 1]
+//                                        - lookup[index];
+//                                uint32_t diff = adcValue0MicroVolt
+//                                        - lookup[index];
+//                                double portion = diff / total;
+//                                distance =
+//                                        (int) (portion * correspond[index]
+//                                                + (1 - portion)
+//                                                        * correspond[index + 1]);
+//                                break;
+//                            }
+//                        }
+//                    }
+//                    if (sensorData[PIXY_SIG_LOC + block_target[j] * 14] == 19)
+//                    {
+//                        color[j] = GREEN_RED;
+//                    }
+                    //                    final_msg = OBJECT_FINDING_SIG << 24 | isDetected << 16
+                    //                            | color << 8 | direction;
+//                }
+//            }
             dataToSend.event = PROCESS_MSG;
             dataToSend.state = DROPAREA_FINDING;
             dataToSend.shortDistWarn = aFsm->distWarn;

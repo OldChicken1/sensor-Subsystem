@@ -23,7 +23,7 @@ debug.obj: C:/FreeRTOS/FreeRTOSv10.2.1/FreeRTOS/Source/portable/CCS/ARM_CM3/port
 debug.obj: C:/FreeRTOS/FreeRTOSv10.2.1/FreeRTOS/Source/include/mpu_wrappers.h
 debug.obj: C:/FreeRTOS/FreeRTOSv10.2.1/FreeRTOS/Source/include/task.h
 debug.obj: C:/FreeRTOS/FreeRTOSv10.2.1/FreeRTOS/Source/include/list.h
-debug.obj: C:/Users/jiez/workspace_v9_2/mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg/Debug/syscfg/Board.h
+debug.obj: C:/Users/jiez/workspace_v9_2/sensor_subsystem/Debug/syscfg/Board.h
 debug.obj: C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/I2C.h
 debug.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdbool.h
 debug.obj: C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/UART.h
@@ -51,7 +51,7 @@ C:/FreeRTOS/FreeRTOSv10.2.1/FreeRTOS/Source/portable/CCS/ARM_CM3/portmacro.h:
 C:/FreeRTOS/FreeRTOSv10.2.1/FreeRTOS/Source/include/mpu_wrappers.h: 
 C:/FreeRTOS/FreeRTOSv10.2.1/FreeRTOS/Source/include/task.h: 
 C:/FreeRTOS/FreeRTOSv10.2.1/FreeRTOS/Source/include/list.h: 
-C:/Users/jiez/workspace_v9_2/mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg/Debug/syscfg/Board.h: 
+C:/Users/jiez/workspace_v9_2/sensor_subsystem/Debug/syscfg/Board.h: 
 C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/I2C.h: 
 C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdbool.h: 
 C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/UART.h: 

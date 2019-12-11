@@ -37,7 +37,7 @@ mqtt_queue.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/s
 mqtt_queue.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdio.h
 mqtt_queue.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdarg.h
 mqtt_queue.obj: ../debug.h
-mqtt_queue.obj: C:/Users/jiez/workspace_v9_2/mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg/Debug/syscfg/Board.h
+mqtt_queue.obj: C:/Users/jiez/workspace_v9_2/sensor_subsystem/Debug/syscfg/Board.h
 mqtt_queue.obj: C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/I2C.h
 mqtt_queue.obj: C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/UART.h
 mqtt_queue.obj: ../pixy_queue.h
@@ -81,7 +81,7 @@ C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdlib.h:
 C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdio.h: 
 C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdarg.h: 
 ../debug.h: 
-C:/Users/jiez/workspace_v9_2/mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg/Debug/syscfg/Board.h: 
+C:/Users/jiez/workspace_v9_2/sensor_subsystem/Debug/syscfg/Board.h: 
 C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/I2C.h: 
 C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/UART.h: 
 ../pixy_queue.h: 

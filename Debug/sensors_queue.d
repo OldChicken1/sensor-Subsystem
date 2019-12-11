@@ -25,7 +25,7 @@ sensors_queue.obj: C:/FreeRTOS/FreeRTOSv10.2.1/FreeRTOS/Source/include/queue.h
 sensors_queue.obj: C:/FreeRTOS/FreeRTOSv10.2.1/FreeRTOS/Source/include/task.h
 sensors_queue.obj: C:/FreeRTOS/FreeRTOSv10.2.1/FreeRTOS/Source/include/list.h
 sensors_queue.obj: ../debug.h
-sensors_queue.obj: C:/Users/jiez/workspace_v9_2/mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg/Debug/syscfg/Board.h
+sensors_queue.obj: C:/Users/jiez/workspace_v9_2/sensor_subsystem/Debug/syscfg/Board.h
 sensors_queue.obj: C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/I2C.h
 sensors_queue.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdbool.h
 sensors_queue.obj: C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/UART.h
@@ -69,7 +69,7 @@ C:/FreeRTOS/FreeRTOSv10.2.1/FreeRTOS/Source/include/queue.h:
 C:/FreeRTOS/FreeRTOSv10.2.1/FreeRTOS/Source/include/task.h: 
 C:/FreeRTOS/FreeRTOSv10.2.1/FreeRTOS/Source/include/list.h: 
 ../debug.h: 
-C:/Users/jiez/workspace_v9_2/mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg/Debug/syscfg/Board.h: 
+C:/Users/jiez/workspace_v9_2/sensor_subsystem/Debug/syscfg/Board.h: 
 C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/I2C.h: 
 C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdbool.h: 
 C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/UART.h: 

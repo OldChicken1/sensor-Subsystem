@@ -121,13 +121,12 @@
 #define RETAIN_ENABLE            1
 
 /* Defining Number of subscription topics                                    */
-#define SUBSCRIPTION_TOPIC_COUNT 3
+#define SUBSCRIPTION_TOPIC_COUNT 1
 
 //simulating sensor
 /* Defining Subscription Topic Values                                        */
-#define SUBSCRIPTION_TOPIC0      "/team18/rocky_"
-#define SUBSCRIPTION_TOPIC1      "/team18/jacob"
-#define SUBSCRIPTION_TOPIC2      "/team18/ahmed"
+#define SUBSCRIPTION_TOPIC0      "/team18/navig"
+
 //#define SUBSCRIPTION_TOPIC2      "/team18/ahmed"
 //#define SUBSCRIPTION_TOPIC2      "/team18/arm___"
 ////#define SUBSCRIPTION_TOPIC3      "/cc3200/ToggleLEDCmdL3"
@@ -226,8 +225,9 @@ const char ClientPassword[] = "pwd1";
 /* Subscription topics and qos values                                        */
 static const char * const topic[SUBSCRIPTION_TOPIC_COUNT] = {
         SUBSCRIPTION_TOPIC0,
-        SUBSCRIPTION_TOPIC1,
-        SUBSCRIPTION_TOPIC2 };
+//        SUBSCRIPTION_TOPIC1,
+//        SUBSCRIPTION_TOPIC2
+};
 
 const unsigned char qos[SUBSCRIPTION_TOPIC_COUNT] = { MQTT_QOS_0, MQTT_QOS_0,
 MQTT_QOS_0 };
@@ -651,11 +651,11 @@ void * MqttClient(void *pvParameters)
             uint8_t digit = queueElemRecv.distance;
             snprintf(txBuff, TXBUFFSIZE, "{\"Distance\": \"%c%c%c\"}", handred,
                      decade, digit);
-            lRetVal = MQTTClient_publish(
-                    gMqttClient, (char*) publish_topic0,
-                    strlen((char*) publish_topic0), txBuff,
-                    strlen((char*) txBuff),
-                    MQTT_QOS_0 | ((RETAIN_ENABLE) ? MQTT_PUBLISH_RETAIN : 0));
+//            lRetVal = MQTTClient_publish(
+//                    gMqttClient, (char*) publish_topic0,
+//                    strlen((char*) publish_topic0), txBuff,
+//                    strlen((char*) txBuff),
+//                    MQTT_QOS_0 | ((RETAIN_ENABLE) ? MQTT_PUBLISH_RETAIN : 0));
             pub_count++;
             //                dbgOutputLoc(MAIN_MSG_EVENT_OUT_LOC);
             msg_send_num++;

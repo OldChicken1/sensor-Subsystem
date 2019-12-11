@@ -52,7 +52,7 @@ client_cbs.obj: C:/FreeRTOS/FreeRTOSv10.2.1/FreeRTOS/Source/include/queue.h
 client_cbs.obj: C:/FreeRTOS/FreeRTOSv10.2.1/FreeRTOS/Source/include/task.h
 client_cbs.obj: C:/FreeRTOS/FreeRTOSv10.2.1/FreeRTOS/Source/include/list.h
 client_cbs.obj: ../debug.h
-client_cbs.obj: C:/Users/jiez/workspace_v9_2/mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg/Debug/syscfg/Board.h
+client_cbs.obj: C:/Users/jiez/workspace_v9_2/sensor_subsystem/Debug/syscfg/Board.h
 client_cbs.obj: C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/I2C.h
 client_cbs.obj: C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/UART.h
 client_cbs.obj: ../pixy_queue.h
@@ -113,7 +113,7 @@ C:/FreeRTOS/FreeRTOSv10.2.1/FreeRTOS/Source/include/queue.h:
 C:/FreeRTOS/FreeRTOSv10.2.1/FreeRTOS/Source/include/task.h: 
 C:/FreeRTOS/FreeRTOSv10.2.1/FreeRTOS/Source/include/list.h: 
 ../debug.h: 
-C:/Users/jiez/workspace_v9_2/mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg/Debug/syscfg/Board.h: 
+C:/Users/jiez/workspace_v9_2/sensor_subsystem/Debug/syscfg/Board.h: 
 C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/I2C.h: 
 C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/UART.h: 
 ../pixy_queue.h: 

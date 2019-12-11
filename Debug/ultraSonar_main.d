@@ -15,7 +15,7 @@ ultraSonar_main.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/incl
 ultraSonar_main.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/machine/_stdint.h
 ultraSonar_main.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/sys/_stdint.h
 ultraSonar_main.obj: C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/Timer.h
-ultraSonar_main.obj: C:/Users/jiez/workspace_v9_2/mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg/Debug/syscfg/Board.h
+ultraSonar_main.obj: C:/Users/jiez/workspace_v9_2/sensor_subsystem/Debug/syscfg/Board.h
 ultraSonar_main.obj: C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/I2C.h
 ultraSonar_main.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdbool.h
 ultraSonar_main.obj: C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/UART.h
@@ -62,7 +62,7 @@ C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/machine/_types.h:
 C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/machine/_stdint.h: 
 C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/sys/_stdint.h: 
 C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/Timer.h: 
-C:/Users/jiez/workspace_v9_2/mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg/Debug/syscfg/Board.h: 
+C:/Users/jiez/workspace_v9_2/sensor_subsystem/Debug/syscfg/Board.h: 
 C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/I2C.h: 
 C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdbool.h: 
 C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/UART.h: 

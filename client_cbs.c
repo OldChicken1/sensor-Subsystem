@@ -221,7 +221,7 @@ void MqttClientCallback(int32_t event,
             //APP_PRINT("Duplicate\n\r");
         }
         sendMsgToStatQueue(&queueElem);
-        if(strncmp(msg_board, "rocky", 5) == 0)
+        if(strncmp(msg_board, "navig", 5) == 0)
         {
             msgQueue_sensor armToSensors;
             armToSensors.dataType = ARM_MSG_TYPE;

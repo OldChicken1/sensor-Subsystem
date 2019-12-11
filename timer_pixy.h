@@ -16,7 +16,7 @@
 #define CCC_SIG_ALL                          0xff
 
 #define PIXY_ADDR           0x54
-#define TIMER_PIXY_MS_TIME 500
+#define TIMER_PIXY_MS_TIME 200
 #define I2C_SUCCESS_SIG 1
 #define I2C_FAIL_SIG 0
 

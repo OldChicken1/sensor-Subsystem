@@ -28,7 +28,7 @@ pixy_main.obj: C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/posix/ccs/sched.
 pixy_main.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdbool.h
 pixy_main.obj: C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/GPIO.h
 pixy_main.obj: C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/Timer.h
-pixy_main.obj: C:/Users/jiez/workspace_v9_2/mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg/Debug/syscfg/Board.h
+pixy_main.obj: C:/Users/jiez/workspace_v9_2/sensor_subsystem/Debug/syscfg/Board.h
 pixy_main.obj: C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/I2C.h
 pixy_main.obj: ../timer_pixy.h
 pixy_main.obj: ../debug.h
@@ -90,7 +90,7 @@ C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/posix/ccs/sched.h:
 C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdbool.h: 
 C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/GPIO.h: 
 C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/Timer.h: 
-C:/Users/jiez/workspace_v9_2/mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg/Debug/syscfg/Board.h: 
+C:/Users/jiez/workspace_v9_2/sensor_subsystem/Debug/syscfg/Board.h: 
 C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/I2C.h: 
 ../timer_pixy.h: 
 ../debug.h: 

@@ -148,38 +148,38 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg.out \
+sensor_subsystem.out \
 
 EXE_OUTPUTS__QUOTED += \
-"mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg.out" \
+"sensor_subsystem.out" \
 
 BIN_OUTPUTS += \
-mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg.bin \
+sensor_subsystem.bin \
 
 BIN_OUTPUTS__QUOTED += \
-"mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg.bin" \
+"sensor_subsystem.bin" \
 
 
 # All Target
 all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
-	@$(MAKE) --no-print-directory -Onone "mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg.out"
+	@$(MAKE) --no-print-directory -Onone "sensor_subsystem.out"
 
 dependents:
 	-cd C:/Users/jiez/workspace_v9_2/freertos_builds_CC3220SF_LAUNCHXL_release_ccs/Debug && $(MAKE) all
 
 # Tool invocations
-mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS) C:/Users/jiez/workspace_v9_2/freertos_builds_CC3220SF_LAUNCHXL_release_ccs/Debug/freertos_builds_CC3220SF_LAUNCHXL_release_ccs.lib
+sensor_subsystem.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS) C:/Users/jiez/workspace_v9_2/freertos_builds_CC3220SF_LAUNCHXL_release_ccs/Debug/freertos_builds_CC3220SF_LAUNCHXL_release_ccs.lib
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: ARM Linker'
-	"C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib -me -g --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on -z -m"mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg.map" -i"C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/net/mqtt/lib" -i"C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/net/lib" -i"C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/net/wifi/slnetif" -i"C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source" -i"C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/net/wifi" -i"C:/Users/jiez/workspace_v9_2/freertos_builds_CC3220SF_LAUNCHXL_release_ccs/Debug" -i"C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/lib" --diag_suppress=10063 --diag_wrap=off --display_error_number --warn_sections --xml_link_info="mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg_linkInfo.xml" --rom_model -o "mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg.out" $(ORDERED_OBJS)
+	"C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=vfplib -me -g --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on -z -m"sensor_subsystem.map" -i"C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/net/mqtt/lib" -i"C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/net/lib" -i"C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/net/wifi/slnetif" -i"C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source" -i"C:/ti/simplelink_cc32xx_sdk_3_20_00_06/source/ti/drivers/net/wifi" -i"C:/Users/jiez/workspace_v9_2/freertos_builds_CC3220SF_LAUNCHXL_release_ccs/Debug" -i"C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/lib" --diag_suppress=10063 --diag_wrap=off --display_error_number --warn_sections --xml_link_info="sensor_subsystem_linkInfo.xml" --rom_model -o "sensor_subsystem.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 	@$(MAKE) --no-print-directory post-build
 
-mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg.bin: $(EXE_OUTPUTS)
+sensor_subsystem.bin: $(EXE_OUTPUTS)
 	@echo 'Building files: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo 'Invoking: ARM Hex Utility'
-	"C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/bin/armhex"  -o "mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg.bin" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/bin/armhex"  -o "sensor_subsystem.bin" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo ' '
 	@$(MAKE) --no-print-directory post-build
@@ -194,7 +194,7 @@ clean:
 	-@echo ' '
 
 post-build:
-	-C:/ti/ccs920/ccs/utils/tiobj2bin/tiobj2bin mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg.out mqtt_client_CC3220SF_LAUNCHXL_freertos_ccs_syscfg.bin C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/bin/armofd C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/bin/armhex C:/ti/ccs920/ccs/utils/tiobj2bin/mkhex4bin
+	-C:/ti/ccs920/ccs/utils/tiobj2bin/tiobj2bin sensor_subsystem.out sensor_subsystem.bin C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/bin/armofd C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/bin/armhex C:/ti/ccs920/ccs/utils/tiobj2bin/mkhex4bin
 	-@echo ' '
 
 .PHONY: all clean dependents
